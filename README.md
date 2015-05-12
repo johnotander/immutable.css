@@ -19,7 +19,9 @@ npm i -g immutable-css
 ```js
 var immutableCss = require('immutable-css');
 
-immutableCss('vendor.css', 'app.css');
+immutableCss('vendor.css', 'app.css', function(mutations) {
+  console.log(mutations);
+});
 // [{ selector: '.awesome', line: 5, column: 1, rule: {/* Rule Object */} }];
 ```
 
@@ -27,6 +29,13 @@ immutableCss('vendor.css', 'app.css');
 immutableCss('vendor.css', 'app.css', { verbose: true });
 // app.css[line 5,col 1]: .awesome was mutated
 ```
+
+### Arguments
+
+1. `immutableCss` (file or glob): Immutable, vendor CSS -- `css/vendor.css` or `vendor/**/*.css`
+* `customCss` (file or glob): Custom application CSS -- `css/app.css` or `app/css/**/*.css`
+* `options` (object): Optional object to specify options -- `{ verbose: true }`
+* `callback` (function): Optional callback to receive mutations -- `function(mutations) { console.log(mutations }`
 
 #### Options
 
